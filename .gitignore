@@ -1,0 +1,53 @@
+# Ignore environment files that may contain secrets
+.env
+.env.*
+
+# Editor directories and project files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Swap and backup files
+*~
+*.swp
+*.swo
+*.bak
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Node modules (if added later)
+node_modules/
+
+# Build and cache folders
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+out/
+
+# Python artifacts (if ever added)
+__pycache__/
+*.pyc
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.crt
+*.csr
+
+# Misc
+.cache/
+.sass-cache/
+
+# Ignore local environment/config files
+.env.local
+.env.*.local

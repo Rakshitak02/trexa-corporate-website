@@ -1,0 +1,7 @@
+# robots.txt for Trexa
+# POST-DEPLOYMENT: Replace https://www.trexa.io with your real Vercel URL in the Sitemap line below.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.trexa.io/sitemap.xml

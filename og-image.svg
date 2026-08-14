@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eff6ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative blobs -->
+  <circle cx="1080" cy="100" r="260" fill="#2563eb" opacity="0.06"/>
+  <circle cx="120" cy="560" r="200" fill="#10b981" opacity="0.06"/>
+  <circle cx="960" cy="580" r="180" fill="#7c3aed" opacity="0.05"/>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="200" width="6" height="220" rx="3" fill="url(#accent)"/>
+
+  <!-- Logo mark -->
+  <rect x="80" y="80" width="72" height="72" rx="16" fill="#2563eb"/>
+  <text x="116" y="134" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="42" font-weight="800" fill="#ffffff">T</text>
+
+  <!-- Brand name -->
+  <text x="172" y="131" font-family="'Segoe UI', system-ui, sans-serif" font-size="40" font-weight="800" fill="#2563eb">Tre</text>
+  <text x="238" y="131" font-family="'Segoe UI', system-ui, sans-serif" font-size="40" font-weight="800" fill="#0f172a">xa</text>
+
+  <!-- Headline -->
+  <text x="96" y="240" font-family="'Segoe UI', system-ui, sans-serif" font-size="64" font-weight="900" fill="#0f172a" letter-spacing="-1">Digital Transformation</text>
+  <text x="96" y="316" font-family="'Segoe UI', system-ui, sans-serif" font-size="64" font-weight="900" fill="#0f172a" letter-spacing="-1">&amp; Software Development</text>
+
+  <!-- Subline -->
+  <text x="96" y="390" font-family="'Segoe UI', system-ui, sans-serif" font-size="30" fill="#64748b">Web · Mobile · Cloud · Data · Security · Strategy</text>
+
+  <!-- Divider -->
+  <rect x="96" y="430" width="600" height="2" rx="1" fill="#e2e8f0"/>
+
+  <!-- Stats row -->
+  <text x="96"  y="490" font-family="'Segoe UI', system-ui, sans-serif" font-size="36" font-weight="800" fill="#2563eb">500+</text>
+  <text x="96"  y="522" font-family="'Segoe UI', system-ui, sans-serif" font-size="18" fill="#64748b">Clients</text>
+
+  <text x="256" y="490" font-family="'Segoe UI', system-ui, sans-serif" font-size="36" font-weight="800" fill="#2563eb">120+</text>
+  <text x="256" y="522" font-family="'Segoe UI', system-ui, sans-serif" font-size="18" fill="#64748b">Projects</text>
+
+  <text x="416" y="490" font-family="'Segoe UI', system-ui, sans-serif" font-size="36" font-weight="800" fill="#2563eb">15 yrs</text>
+  <text x="416" y="522" font-family="'Segoe UI', system-ui, sans-serif" font-size="18" fill="#64748b">Experience</text>
+
+  <text x="596" y="490" font-family="'Segoe UI', system-ui, sans-serif" font-size="36" font-weight="800" fill="#2563eb">98%</text>
+  <text x="596" y="522" font-family="'Segoe UI', system-ui, sans-serif" font-size="18" fill="#64748b">Satisfaction</text>
+
+  <!-- Domain badge -->
+  <rect x="940" y="542" width="180" height="48" rx="24" fill="#2563eb"/>
+  <text x="1030" y="574" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="700" fill="#ffffff">trexa.io</text>
+</svg>
