@@ -201,26 +201,36 @@ if (contactForm) {
       submitBtn.disabled = true;
 
       try {
-        // Send URL-encoded form data to the serverless proxy which will attach the
-        // Web3Forms access key from the Vercel environment and forward the request.
+        // Build a plain object from the form and send JSON to the serverless proxy.
         const formData = new FormData(contactForm);
-        const params = new URLSearchParams();
-        for (const [k, v] of formData.entries()) params.append(k, v);
+        const payload = {};
+        for (const [k, v] of formData.entries()) payload[k] = v;
 
         const response = await fetch(contactForm.action, {
           method: 'POST',
-          body: params.toString(),
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' }
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
         });
 
-        if (response.ok) {
+        const text = await response.text();
+        let data = null;
+        try { data = JSON.parse(text); } catch (e) {
+          // Non-JSON response from server
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+          alert('Server returned an unexpected response. Please try again later.');
+          return;
+        }
+
+        if (response.status === 200 && data && data.success) {
           contactForm.style.display = 'none';
           const success = document.getElementById('formSuccess');
           if (success) success.classList.add('visible');
         } else {
           submitBtn.textContent = 'Send Message';
           submitBtn.disabled = false;
-          alert('Something went wrong. Please try again or email us directly.');
+          const msg = (data && data.error) ? data.error : 'Something went wrong. Please try again or email us directly.';
+          alert(msg);
         }
       } catch (err) {
         submitBtn.textContent = 'Send Message';
