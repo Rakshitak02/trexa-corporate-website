@@ -31,10 +31,10 @@ export default async function handler(req, res) {
       parsed = JSON.parse(text);
     } catch (e) {
       // Upstream returned non-JSON (likely HTML). Log safely and return a structured error.
-      console.error('Web3Forms returned non-JSON response', { status: upstream.status });
+      console.error('Upstream returned non-JSON response', { status: upstream.status });
       return res.status(502).json({
         success: false,
-        error: 'Web3Forms returned a non-JSON response',
+        error: 'Upstream returned a non-JSON response',
         upstream_status: upstream.status,
         upstream_body_preview: String(text).slice(0, 1024)
       });

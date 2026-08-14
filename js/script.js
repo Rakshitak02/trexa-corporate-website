@@ -206,7 +206,30 @@ if (contactForm) {
         const payload = {};
         for (const [k, v] of formData.entries()) payload[k] = v;
 
-        const response = await fetch(contactForm.action, {
+        // Post directly to Web3Forms API for static site integration.
+        // NOTE: This uses the project's Web3Forms access key. Do not log this key.
+        const WEB3FORMS_KEY = "704177ae-aee6-4c05-aa6b-b35cb268e06c";
+
+        // Validate that the key is not a placeholder or empty.
+        const invalidKeyValues = ['YOUR_WEB3FORMS_KEY', 'YOUR_ACCESS_KEY_HERE', 'undefined', 'null', ''];
+        if (!WEB3FORMS_KEY || invalidKeyValues.includes(String(WEB3FORMS_KEY).trim())) {
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+          alert('Contact form is not configured: missing or invalid Web3Forms access key.');
+          return;
+        }
+
+        // Ensure the request contains a `name` field as required by Web3Forms.
+        const first = (payload.firstName || '').trim();
+        const last = (payload.lastName || '').trim();
+        if (!payload.name) {
+          payload.name = (first || last) ? (first + (first && last ? ' ' : '') + last).trim() : (payload.name || payload.fullname || '');
+        }
+
+        // Attach the access key for client-side static integration.
+        payload.access_key = WEB3FORMS_KEY;
+
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -215,10 +238,10 @@ if (contactForm) {
         const text = await response.text();
         let data = null;
         try { data = JSON.parse(text); } catch (e) {
-          // Non-JSON response from server
+          // Non-JSON response from upstream — treat as an unexpected error.
           submitBtn.textContent = 'Send Message';
           submitBtn.disabled = false;
-          alert('Server returned an unexpected response. Please try again later.');
+          alert('Unexpected response from the contact provider. Please try again later.');
           return;
         }
 
@@ -229,7 +252,7 @@ if (contactForm) {
         } else {
           submitBtn.textContent = 'Send Message';
           submitBtn.disabled = false;
-          const msg = (data && data.error) ? data.error : 'Something went wrong. Please try again or email us directly.';
+          const msg = (data && (data.error || data.message)) ? (data.error || data.message) : 'Submission failed. Please try again or email us directly.';
           alert(msg);
         }
       } catch (err) {
